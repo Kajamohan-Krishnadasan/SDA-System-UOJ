@@ -17,23 +17,30 @@ const LoadingComponent = lazy(() =>
 );
 
 const StudentHomeComponent = lazy(() =>
-  import("./private/student/home/home.component.jsx")
+  import("./private/student/student/student.component.jsx")
 );
-const AcademicHomeComponent = lazy(() =>
-  import("./private/academic-staff/home/home.component.jsx")
+
+const AcademicStaffComponent = lazy(() =>
+  import("./private/academic-staff/academic-staff/academic-staff.component.jsx")
 );
 
 // non-academic staff act as admin
-const AdminHomeComponent = lazy(() =>
-  import("./private/non-academic-staff/home/home.component.jsx")
+const NonAcademicStaffComponent = lazy(() =>
+  import(
+    "./private/non-academic-staff/non-academic-staff/non-academic-staff.component.jsx"
+  )
 );
 
 function App() {
+  localStorage.setItem("authenticated", "true");
+  localStorage.setItem("user-role", "staff");
+
   return (
     <div className="App">
       <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Navigate to="/sda-uoj-system" />} />
+
           <Route
             path="/sda-uoj-system/*"
             element={
@@ -85,7 +92,7 @@ function App() {
                           />
                           <Route
                             path="home"
-                            element={<AcademicHomeComponent />}
+                            element={<AcademicStaffComponent />}
                           />
                           <Route
                             path="loading"
@@ -110,7 +117,10 @@ function App() {
                             path="/"
                             element={<Navigate to="home" />}
                           />
-                          <Route path="home" element={<AdminHomeComponent />} />
+                          <Route
+                            path="home"
+                            element={<NonAcademicStaffComponent />}
+                          />
                           <Route
                             path="loading"
                             element={<LoadingComponent />}

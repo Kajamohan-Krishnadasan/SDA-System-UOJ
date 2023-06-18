@@ -1,0 +1,126 @@
+@import "../../assets/scss/index";
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: hidden;
+  animation: fadeIn 0.5s ease-in-out;
+
+  &__container {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #000;
+    width: get-rem(400);
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: #fff;
+
+    &__header {
+      width: 100%;
+
+      &__title {
+        position: relative;
+        top: -10px;
+        left: -5px;
+        display: flex;
+        font-family: $font-family;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $mainscreen-dark-background-color;
+      }
+
+      &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: flex-end;
+        color: #000;
+        padding: 0.6rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        font-size: 1.5rem;
+
+        &:hover {
+          transform: scale(1.1);
+          color: #4c4c4c;
+        }
+      }
+    }
+
+    &__content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 1rem;
+
+      &__message,
+      &__thankyou {
+        width: 97%;
+        height: max-content;
+        display: flex;
+        text-align: justify;
+        font-family: $font-family;
+        font-size: 1.2rem;
+        color: $mainscreen-dark-background-color;
+        margin-bottom: 1rem;
+        color: rgba(11, 111, 11, 0.667);
+      }
+    }
+
+    &__footer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 1rem;
+
+      button {
+        width: get-rem(100);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        border-radius: 10px;
+        color: #fff;
+        font-family: $font-family;
+        font-size: 1.2rem;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
