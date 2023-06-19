@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import NotificationComponent from "../../shared/notification/notification.component";
 import "./login.component.scss";
 
 const LoginComponent = ({ userType, isOpen, openPopup }) => {
@@ -6,6 +7,8 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
     username: "",
     password: "",
   });
+
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const [error, seterror] = useState({
     username: "",
@@ -18,6 +21,14 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
   });
 
   // const [loading, setloading] = useState(false);
+
+  useEffect(() => {
+    if (isError.username && isError.password) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [isError]);
 
   const closeModal = () => {
     isOpen(false);
@@ -35,10 +46,11 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
       [name]: value,
     });
 
-    handleValidate();
+    if (name === "username") handleValidate(true, false, value);
+    if (name === "password") handleValidate(false, true, value);
   };
 
-  const handleValidate = () => {
+  const handleValidate = (isUserame, isPassword, value) => {
     let isErrorUsername = false;
     let isErrorPassword = false;
 
@@ -47,20 +59,44 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
       password: "",
     };
 
-    if (user.username.length < 1) {
-      isErrorUsername = true;
-      errors.username = "Username is required";
-    } else if (user.username.includes(" ")) {
-      isErrorUsername = true;
-      errors.username = "Username cannot contain spaces";
+    const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
+
+    if (isUserame) {
+      console.log("username");
+
+      if (value.length < 1) {
+        isErrorUsername = true;
+        errors.username =
+          "Username is required. Please use university email address.";
+      } else if (value.includes(" ")) {
+        isErrorUsername = true;
+        errors.username =
+          "Username can't contain spaces. Please use university email address.";
+      } else if (!emailRegex.test(value)) {
+        isErrorUsername = true;
+        errors.username =
+          "Username is invalid. Please use university email address.";
+      }
     }
 
-    if (user.password.length < 1) {
-      isErrorPassword = true;
-      errors.password = "Password is required";
-    } else if (user.password.includes(" ")) {
-      isErrorPassword = true;
-      errors.password = "Password cannot contain spaces";
+    if (isPassword) {
+      console.log("password");
+
+      if (value.length < 1) {
+        isErrorPassword = true;
+        errors.password =
+          "Password is required. Please use university email address.";
+      } else if (value.includes(" ")) {
+        isErrorPassword = true;
+        errors.password =
+          "Password can't contain spaces. Please use university email address.";
+      } else if (!passwordRegex.test(value)) {
+        isErrorPassword = true;
+        errors.password =
+          "Password is invalid. Password must contain at least one uppercase letter, one lowercase letter, one number and one special character.";
+      }
     }
 
     seterror(errors);
@@ -77,7 +113,7 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
     // console.log("form submitted");
     console.log("form", e.target.value);
 
-    const err = handleValidate();
+    const err = isError.username || isError.password;
 
     if (!err) {
       // setloading(true);
@@ -107,6 +143,13 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
 
   return (
     <div className="login">
+      {(isError.username || isError.password) && (
+        <NotificationComponent
+          message={error.username || error.password}
+          type="error"
+        />
+      )}
+
       <div className="login__container">
         <div className="login__container__close">
           <span className="fas fa-times" onClick={closeModal}></span>
@@ -130,14 +173,7 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
               />
               <label htmlFor="username">Username</label>
 
-              {!isError.username ? (
-                <div className="hint">(use you university credentials)</div>
-              ) : (
-                <div className="error">
-                  <span className="fas fa-exclamation-circle error___icon"></span>
-                  <span className="error__message">{error.username}</span>
-                </div>
-              )}
+              <div className="hint">(use you university credentials)</div>
             </div>
 
             <div className="login__container__body__form__input">
@@ -150,18 +186,15 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
               />
               <label htmlFor="password">Password</label>
 
-              {!isError.password ? (
-                <div className="hint">(use you university credentials)</div>
-              ) : (
-                <div className="error">
-                  <span className="fas fa-exclamation-circle error___icon"></span>
-                  <span className="error__message">{error.password}</span>
-                </div>
-              )}
+              <div className="hint">(use you university credentials)</div>
             </div>
 
             <div className="login__container__body__form__button">
-              <button type="submit" onClick={handleFormSubmit}>
+              <button
+                type="submit"
+                disabled={isDisabled}
+                onClick={handleFormSubmit}
+              >
                 Login
               </button>
             </div>

@@ -19,8 +19,8 @@
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 0 10px #000;
-    width: get-rem(400);
-    min-width: max-content;
+    width: get-rem(420);
+    // min-width: ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,7 +86,7 @@
             null
           );
           padding-top: 1rem;
-          margin-bottom: 1rem;
+          margin-bottom: 1.2rem;
 
           input {
             font-size: 1rem;
@@ -133,18 +133,18 @@
           }
 
           .error {
-            margin-top: 5px;
-            padding: 5px;
+            margin-top: 8px;
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            font-family: "outfit", Tahoma, Geneva, Verdana, sans-serif;
+            font-family: $font-family;
             font-size: 1rem;
-            text-shadow: 1px 1px 20px #000;
+            text-shadow: 1px 1px 10px #000;
             color: #be0a0a;
 
-            &___icon {
-              margin-right: 5px;
+            &__message {
+              display: flex;
+              text-align: justify;
+              font-size: 0.9rem;
+              width: 100%;
             }
           }
         }
@@ -177,6 +177,17 @@
 
             &:hover {
               box-shadow: 0 0 10px #000;
+            }
+
+            &:disabled {
+              background-color: #ccc;
+              color: #666;
+              cursor: not-allowed;
+              border: none;
+
+              &:hover {
+                box-shadow: none;
+              }
             }
           }
         }
