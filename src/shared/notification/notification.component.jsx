@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./notification.component.scss";
 
-const NotificationComponent = ({ type, message }) => {
-  type = type || "error";
+const NotificationComponent = ({ type, message, isOpen }) => {
+  // type = type || "error";
   message = message || "please try again later or contact the administrator";
-
   const [title, setTitle] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
       closeNotification();
     }, 3000);
-  }, []);
+  });
 
   useEffect(() => {
     const notification = document.querySelector(".Notification__container");
+
     if (type === "success") {
       setTitle("Successfull!");
       notification.classList.add("Notification__container--success");
@@ -31,8 +31,7 @@ const NotificationComponent = ({ type, message }) => {
   }, [type]);
 
   const closeNotification = () => {
-    const notification = document.querySelector(".Notification");
-    notification.classList.add("Notification--close");
+    isOpen(false);
   };
 
   return (

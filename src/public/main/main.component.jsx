@@ -35,6 +35,31 @@ const MainComponent = () => {
     setOpenLogin(true);
   };
 
+  const studentRequests = [
+    "Request Exam Reschedule",
+    "Request Exam Re-attempt",
+    "Request Lab Reschedule",
+    "Request Studentship Confirm Letter",
+    "Request Progress Report",
+    "Request New University Student Record Book",
+    "Request New University Student Identity Card",
+  ];
+
+  const staffRequests = [
+    "Approve/Reject Exam Reschedule",
+    "Approve/Reject Exam Re-attempt",
+    "Approve/Reject Lab Reschedule",
+  ];
+
+  const adminRequests = [
+    "Approve/Reject Exam Reschedule",
+    "Approve/Reject Exam Re-attempt",
+    "Sent Studentship Confirm Letter",
+    "Sent Progress Report",
+    "Provide New University Student Record Book",
+    "Provide New University Student Identity Card",
+  ];
+
   return (
     <main className="main">
       {openLogin && (
@@ -75,7 +100,75 @@ const MainComponent = () => {
           login as non-academic staff
         </button>
       </div>
-      <div className="mobile-only">mobile</div>
+
+      <div className="mobile-only">
+        <div className="mobile-only__login">
+          <div className="mobile-only__login__description">
+            Please select your user type
+          </div>
+
+          <div className="mobile-only__login__users">
+            <button
+              onClick={() => {
+                handleUserType("student");
+              }}
+              className="btn btn__primary"
+            >
+              login as student
+            </button>
+
+            <button
+              onClick={() => {
+                handleUserType("academic-staff");
+              }}
+              className="btn btn__primary"
+            >
+              login as academic staff
+            </button>
+
+            <button
+              onClick={() => {
+                handleUserType("non-academic-staff");
+              }}
+              className="btn btn__primary"
+            >
+              login as non-academic staff
+            </button>
+          </div>
+        </div>
+
+        <div className="mobile-only__Request_Details">
+          <div className="mobile-only__Requester">
+            <div className="mobile-only__Requester__title">Student</div>
+
+            {studentRequests.map((request, index) => (
+              <div key={index} className="mobile-only__Request__name">
+                {index + 1}. {request}
+              </div>
+            ))}
+          </div>
+
+          <div className="mobile-only__Requester">
+            <div className="mobile-only__Requester__title">Academic Staff</div>
+            {staffRequests.map((request, index) => (
+              <div key={index} className="mobile-only__Request__name">
+                {index + 1}. {request}
+              </div>
+            ))}
+          </div>
+
+          <div className="mobile-only__Requester">
+            <div className="mobile-only__Requester__title">
+              Non-Academic Staff
+            </div>
+            {adminRequests.map((request, index) => (
+              <div key={index} className="mobile-only__Request__name">
+                {index + 1}. {request}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 };

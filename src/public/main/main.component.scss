@@ -9,10 +9,128 @@
   overflow-x: hidden;
 
   .mobile-only {
-    background: red;
+    width: 100%;
+    height: 100%;
+    @include media-query_all("display", "flex", null, "none", null, null, null);
+    // background: black;
   }
 
   .desktop-only {
+    width: 100%;
+    height: 100%;
+    @include media-query_all("display", "none", null, "flex", null, null, null);
     background: black;
+  }
+}
+
+.mobile-only {
+  background: $mainscreen-dark-background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding-bottom: 1.5rem;
+
+  &__login {
+    width: 100%;
+    height: 100%;
+    // background: lighten($mainscreen-dark-background-color, 10%);
+
+    &__description {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: gray;
+      font-size: 1.1rem;
+      font-weight: 400;
+      // text-align: left;
+      padding: 0 12px;
+      margin-top: 1rem;
+      z-index: 10;
+    }
+
+    &__users {
+      width: 100%;
+
+      justify-content: center;
+      align-items: flex-end;
+      flex-direction: column;
+
+      button {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-align: center;
+        // padding: 0 1rem;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        background: $mainscreen-dark-background-color;
+        border-bottom: 1px solid rgb(229, 225, 225);
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__Request_Details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    @include media-query_all("width", "100%", "80%", null, null, null, null);
+  }
+
+  &__Requester {
+    background: $mainscreen-light-background-color;
+    color: $mainscreen-light-color;
+    width: 95%;
+    height: 100%;
+    @include media-query_all("width", "95%", "100%", null, null, null, null);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+
+    &__title {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1rem;
+      @include media-query_all("font-size", 32, 40, null, null, null, null);
+      @include media-query_all("margin-bottom", 10, 16, null, null, null, null);
+      font-weight: 600;
+      color: $mainscreen-dark-background-color;
+    }
+  }
+
+  &__Request__name {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    font-weight: 600;
+
+    @include media-query_all("font-size", 16, 20, null, null, null, null);
+    @include media-query_all("margin-bottom", 5, 10, null, null, null, null);
   }
 }

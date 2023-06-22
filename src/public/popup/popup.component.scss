@@ -17,16 +17,16 @@
   &__container {
     position: relative;
     padding: 1.5rem;
-    border-radius: 10px;
     box-shadow: 0 0 10px #000;
-    width: get-rem(400);
-    min-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 100;
     background: #fff;
+
+    @include media-query_all("width", "95%", 400, null, null, null, null);
+    @include media-query_all("border-radius", 0, 10, null, null, null, null);
 
     &__header {
       width: 100%;
@@ -37,9 +37,11 @@
         left: -5px;
         display: flex;
         font-family: $font-family;
-        font-size: 1.5rem;
+        // font-size: 1.5rem;
         font-weight: 600;
         color: $mainscreen-dark-background-color;
+
+        @include media-query_all("font-size", 20, 24, null, null, null, null);
       }
 
       &__close {
@@ -68,7 +70,8 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      margin-top: 1rem;
+
+      @include media-query_all("margin-top", 5, 16, null, null, null, null);
 
       &__message,
       &__thankyou {
@@ -77,10 +80,11 @@
         display: flex;
         text-align: justify;
         font-family: $font-family;
-        font-size: 1.2rem;
-        color: $mainscreen-dark-background-color;
-        margin-bottom: 1rem;
+        // color: $mainscreen-dark-background-color;
         color: rgba(11, 111, 11, 0.667);
+
+        @include media-query_all("margin-top", 5, 16, null, null, null, null);
+        @include media-query_all("font-size", 16, 20, null, null, null, null);
       }
     }
 
@@ -90,9 +94,9 @@
       justify-content: flex-end;
       align-items: center;
       margin-top: 1rem;
+      @include media-query_all("margin-top", 16, null, null, null, null, null);
 
       button {
-        width: get-rem(100);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -100,8 +104,10 @@
         border-radius: 10px;
         color: #fff;
         font-family: $font-family;
-        font-size: 1.2rem;
         transition: all 0.3s ease-in-out;
+
+        @include media-query_all("font-size", 16, 20, null, null, null, null);
+        @include media-query_all("width", "100%", 100, null, null, null, null);
       }
     }
   }
