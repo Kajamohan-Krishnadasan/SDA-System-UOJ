@@ -31,7 +31,6 @@ const MainComponent = () => {
   };
 
   const handleLogin = () => {
-    localStorage.setItem("userType", userType);
     setOpenLogin(true);
   };
 
@@ -77,14 +76,6 @@ const MainComponent = () => {
         desktop
         <button
           onClick={() => {
-            handleUserType("student");
-          }}
-          className="btn btn__primary"
-        >
-          login as student
-        </button>
-        <button
-          onClick={() => {
             handleUserType("academic-staff");
           }}
           className="btn btn__primary"
@@ -102,41 +93,6 @@ const MainComponent = () => {
       </div>
 
       <div className="mobile-only">
-        <div className="mobile-only__login">
-          <div className="mobile-only__login__description">
-            Please select your user type
-          </div>
-
-          <div className="mobile-only__login__users">
-            <button
-              onClick={() => {
-                handleUserType("student");
-              }}
-              className="btn btn__primary"
-            >
-              login as student
-            </button>
-
-            <button
-              onClick={() => {
-                handleUserType("academic-staff");
-              }}
-              className="btn btn__primary"
-            >
-              login as academic staff
-            </button>
-
-            <button
-              onClick={() => {
-                handleUserType("non-academic-staff");
-              }}
-              className="btn btn__primary"
-            >
-              login as non-academic staff
-            </button>
-          </div>
-        </div>
-
         <div className="mobile-only__Request_Details">
           <div className="mobile-only__Requester">
             <div className="mobile-only__Requester__title">Student</div>
@@ -146,26 +102,61 @@ const MainComponent = () => {
                 {index + 1}. {request}
               </div>
             ))}
+
+            <div className="mobile-only__Requester__login">
+              <button
+                onClick={() => {
+                  handleUserType("student");
+                }}
+                className="btn btn__primary"
+              >
+                login
+              </button>
+            </div>
           </div>
 
           <div className="mobile-only__Requester">
             <div className="mobile-only__Requester__title">Academic Staff</div>
+
             {staffRequests.map((request, index) => (
               <div key={index} className="mobile-only__Request__name">
                 {index + 1}. {request}
               </div>
             ))}
+
+            <div className="mobile-only__Requester__login">
+              <button
+                onClick={() => {
+                  handleUserType("academic-staff");
+                }}
+                className="btn btn__primary"
+              >
+                login
+              </button>
+            </div>
           </div>
 
           <div className="mobile-only__Requester">
             <div className="mobile-only__Requester__title">
               Non-Academic Staff
             </div>
+
             {adminRequests.map((request, index) => (
               <div key={index} className="mobile-only__Request__name">
                 {index + 1}. {request}
               </div>
             ))}
+
+            <div className="mobile-only__Requester__login">
+              <button
+                onClick={() => {
+                  handleUserType("non-academic-staff");
+                }}
+                className="btn btn__primary"
+              >
+                login
+              </button>
+            </div>
           </div>
         </div>
       </div>

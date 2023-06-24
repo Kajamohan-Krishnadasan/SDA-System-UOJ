@@ -10,12 +10,16 @@ const NonAcademicStaffComponent = () => {
   const [authenticated, setauthenticated] = useState(null);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("authenticated");
-    const loggedUserRole = localStorage.getItem("user-role");
+    async function checkAuth() {
+      const loggedInUser = localStorage.getItem("authenticated");
+      const loggedUserRole = localStorage.getItem("user-role");
 
-    if (loggedInUser && loggedUserRole === "admin") {
-      setauthenticated(true);
+      if (loggedInUser === "true" && loggedUserRole === "admin") {
+        await setauthenticated(true);
+      }
     }
+
+    checkAuth();
   }, []);
 
   if (!authenticated) {

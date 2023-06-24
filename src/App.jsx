@@ -6,10 +6,6 @@ const PublicComponent = lazy(() =>
   import("./public/public/public.component.jsx")
 );
 
-const HomeComponent = lazy(() =>
-  import("./private/academic-staff/home/home.component.jsx")
-);
-
 const LoginComponent = lazy(() => import("./public/login/login.component.jsx"));
 
 const LoadingComponent = lazy(() =>
@@ -48,7 +44,6 @@ function App() {
                 <Routes>
                   <Route index path="/" element={<Navigate to="public" />} />
                   <Route path="public" element={<PublicComponent />} />
-                  <Route path="private" element={<HomeComponent />} />
 
                   <Route path="login" element={<LoginComponent />} />
                   <Route path="loading" element={<LoadingComponent />} />
@@ -134,13 +129,13 @@ function App() {
                     }
                   />
 
-                  <Route path="*" element={<Navigate to="/sda-uoj-system" />} />
+                  {/* <Route path="*" element={<Navigate to="/sda-uoj-system" />} /> */}
                 </Routes>
               </Suspense>
             }
           />
 
-          <Route path="*" element={<Navigate to="/sda-uoj-system" />} />
+          {/* <Route path="*" element={<Navigate to="/sda-uoj-system" />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

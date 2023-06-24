@@ -5,8 +5,11 @@
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  // position: relative;
+  // top: 5.5rem;
+
   overflow-y: scroll;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 
   .mobile-only {
     width: 100%;
@@ -31,57 +34,8 @@
   flex-direction: column;
   overflow-y: scroll;
   padding-bottom: 1.5rem;
-
-  &__login {
-    width: 100%;
-    height: 100%;
-    // background: lighten($mainscreen-dark-background-color, 10%);
-
-    &__description {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: gray;
-      font-size: 1.1rem;
-      font-weight: 400;
-      // text-align: left;
-      padding: 0 12px;
-      margin-top: 1rem;
-      z-index: 10;
-    }
-
-    &__users {
-      width: 100%;
-
-      justify-content: center;
-      align-items: flex-end;
-      flex-direction: column;
-
-      button {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 400;
-        text-align: center;
-        // padding: 0 1rem;
-        border: none;
-        border-radius: 0;
-        background: transparent;
-        background: $mainscreen-dark-background-color;
-        border-bottom: 1px solid rgb(229, 225, 225);
-        cursor: pointer;
-        text-transform: uppercase;
-      }
-    }
-  }
+  // position: relative;
+  // top: 100px;
 
   &__Request_Details {
     display: flex;
@@ -117,6 +71,27 @@
       @include media-query_all("margin-bottom", 10, 16, null, null, null, null);
       font-weight: 600;
       color: $mainscreen-dark-background-color;
+    }
+
+    &__login {
+      width: 100%;
+      height: 100%;
+      // background: lighten($mainscreen-dark-background-color, 10%);
+
+      button {
+        width: 10rem;
+        height: max-content;
+        padding: 1rem;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        border-radius: 1rem;
+        background: transparent;
+        background: $mainscreen-dark-background-color;
+        cursor: pointer;
+        margin-top: 1rem;
+        text-transform: uppercase;
+      }
     }
   }
 

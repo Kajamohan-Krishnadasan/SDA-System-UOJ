@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NotificationComponent from "../../shared/notification/notification.component";
 import "./login.component.scss";
 
@@ -8,6 +9,8 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
     password: "",
   });
   const formRef = useRef();
+
+  const navigate = useNavigate();
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [isNotification, setIsNotification] = useState(false);
@@ -26,6 +29,23 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
     username: false,
     password: false,
   });
+
+  const setUserDetails = () => {
+    if (userType === "Staff") {
+      localStorage.setItem("user-role", "staff");
+      localStorage.setItem("authenticated", "true");
+    }
+
+    if (userType === "Student") {
+      localStorage.setItem("user-role", "student");
+      localStorage.setItem("authenticated", "true");
+    }
+
+    if (userType === "Admin") {
+      localStorage.setItem("user-role", "admin");
+      localStorage.setItem("authenticated", "true");
+    }
+  };
 
   // const [loading, setloading] = useState(false);
 
@@ -49,7 +69,16 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
   };
 
   const handleLogin = () => {
+    setUserDetails();
     closeModal();
+
+    navigate("/sda-uoj-system/student");
+
+    // setloading(true);
+    // setTimeout(() => {
+    //   setloading(false);
+    //   closeModal();
+    // }, 2000);
   };
 
   const handleUser = (e) => {
@@ -159,10 +188,10 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
     if (!err) {
       // setloading(true);
 
-      setTimeout(() => {
-        // setloading(false);
-        handleLogin();
-      }, 2000);
+      // setTimeout(() => {
+      //   // setloading(false);
+      handleLogin();
+      // }, 2000);
 
       setuser({
         username: "",

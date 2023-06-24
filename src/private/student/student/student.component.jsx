@@ -7,14 +7,19 @@ import MainComponent from "../main/main.component";
 import "./student.component.scss";
 
 const StudentComponent = () => {
-  const [authenticated, setauthenticated] = useState(false);
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("authenticated");
-    const loggedUserRole = localStorage.getItem("user-role");
+  const [authenticated, setauthenticated] = useState(true);
 
-    if (loggedInUser === "true" && loggedUserRole === "student") {
-      setauthenticated(true);
+  useEffect(() => {
+    async function checkAuth() {
+      const loggedInUser = localStorage.getItem("authenticated");
+      const loggedUserRole = localStorage.getItem("user-role");
+
+      if (loggedInUser === "true" && loggedUserRole === "student") {
+        await setauthenticated(true);
+      }
     }
+
+    checkAuth();
   }, []);
 
   if (!authenticated) {

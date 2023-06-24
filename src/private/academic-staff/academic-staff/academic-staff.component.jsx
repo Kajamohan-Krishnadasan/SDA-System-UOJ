@@ -11,15 +11,19 @@ const AcademicStaffComponent = () => {
   console.count("AcademicStaffComponent");
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("authenticated");
-    const loggedUserRole = localStorage.getItem("user-role");
+    async function checkAuth() {
+      const loggedInUser = localStorage.getItem("authenticated");
+      const loggedUserRole = localStorage.getItem("user-role");
 
-    console.log("loggedInUser: ", loggedInUser);
-    console.log("loggedUserRole: ", loggedUserRole);
+      console.log("loggedInUser: ", loggedInUser);
+      console.log("loggedUserRole: ", loggedUserRole);
 
-    if (loggedInUser === "true" && loggedUserRole === "staff") {
-      setauthenticated(true);
+      if (loggedInUser === "true" && loggedUserRole === "staff") {
+        await setauthenticated(true);
+      }
     }
+
+    checkAuth();
   }, []);
 
   if (!authenticated) {
