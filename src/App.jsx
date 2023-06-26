@@ -6,13 +6,11 @@ const PublicComponent = lazy(() =>
   import("./public/public/public.component.jsx")
 );
 
-const LoginComponent = lazy(() => import("./public/login/login.component.jsx"));
-
 const LoadingComponent = lazy(() =>
   import("./shared/loading/loading.component.jsx")
 );
 
-const StudentHomeComponent = lazy(() =>
+const StudentComponent = lazy(() =>
   import("./private/student/student/student.component.jsx")
 );
 
@@ -28,9 +26,6 @@ const NonAcademicStaffComponent = lazy(() =>
 );
 
 function App() {
-  localStorage.setItem("authenticated", "true");
-  localStorage.setItem("user-role", "staff");
-
   return (
     <div className="App">
       <BrowserRouter basename="/">
@@ -45,9 +40,6 @@ function App() {
                   <Route index path="/" element={<Navigate to="public" />} />
                   <Route path="public" element={<PublicComponent />} />
 
-                  <Route path="login" element={<LoginComponent />} />
-                  <Route path="loading" element={<LoadingComponent />} />
-
                   <Route
                     path="student/*"
                     element={
@@ -58,10 +50,7 @@ function App() {
                             path="/"
                             element={<Navigate to="home" />}
                           />
-                          <Route
-                            path="home"
-                            element={<StudentHomeComponent />}
-                          />
+                          <Route path="home" element={<StudentComponent />} />
                           <Route
                             path="loading"
                             element={<LoadingComponent />}
@@ -129,13 +118,13 @@ function App() {
                     }
                   />
 
-                  {/* <Route path="*" element={<Navigate to="/sda-uoj-system" />} /> */}
+                  <Route path="*" element={<Navigate to="/sda-uoj-system" />} />
                 </Routes>
               </Suspense>
             }
           />
 
-          {/* <Route path="*" element={<Navigate to="/sda-uoj-system" />} /> */}
+          <Route path="*" element={<Navigate to="/sda-uoj-system" />} />
         </Routes>
       </BrowserRouter>
     </div>

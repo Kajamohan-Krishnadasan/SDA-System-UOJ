@@ -1,19 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navigate from "../../shared/AutoNavigate/navigation";
 import NotificationComponent from "../../shared/notification/notification.component";
 import "./login.component.scss";
 
 const LoginComponent = ({ userType, isOpen, openPopup }) => {
+  const nav = useNavigate();
+
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [isNotification, setIsNotification] = useState(false);
+  // const [loading, setloading] = useState(false);
+
   const [user, setuser] = useState({
     username: "",
     password: "",
   });
-  const formRef = useRef();
-
-  const navigate = useNavigate();
-
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [isNotification, setIsNotification] = useState(false);
 
   const [error, seterror] = useState({
     username: "",
@@ -31,23 +32,27 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
   });
 
   const setUserDetails = () => {
+    localStorage.setItem("authenticated", "true");
+
     if (userType === "Staff") {
       localStorage.setItem("user-role", "staff");
-      localStorage.setItem("authenticated", "true");
+
+      // nav("/sda-uoj-system/academic-staff");
     }
 
     if (userType === "Student") {
       localStorage.setItem("user-role", "student");
-      localStorage.setItem("authenticated", "true");
+
+      // nav("/sda-uoj-system/student");
     }
 
     if (userType === "Admin") {
       localStorage.setItem("user-role", "admin");
-      localStorage.setItem("authenticated", "true");
-    }
-  };
 
-  // const [loading, setloading] = useState(false);
+      // nav("/sda-uoj-system/non-academic-staff");
+    }
+    Navigate(nav);
+  };
 
   useEffect(() => {
     if (!isError.username && !isError.password) {
@@ -69,10 +74,9 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
   };
 
   const handleLogin = () => {
-    setUserDetails();
     closeModal();
 
-    navigate("/sda-uoj-system/student");
+    setUserDetails();
 
     // setloading(true);
     // setTimeout(() => {
@@ -231,7 +235,7 @@ const LoginComponent = ({ userType, isOpen, openPopup }) => {
           </h1>
         </div>
 
-        <form ref={formRef} className="login__container__body">
+        <form className="login__container__body">
           <div className="login__container__body__form">
             <div className="login__container__body__form__input">
               <input

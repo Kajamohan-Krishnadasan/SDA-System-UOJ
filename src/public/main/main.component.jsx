@@ -76,6 +76,14 @@ const MainComponent = () => {
         desktop
         <button
           onClick={() => {
+            handleUserType("student");
+          }}
+          className="btn btn__primary"
+        >
+          login
+        </button>
+        <button
+          onClick={() => {
             handleUserType("academic-staff");
           }}
           className="btn btn__primary"
