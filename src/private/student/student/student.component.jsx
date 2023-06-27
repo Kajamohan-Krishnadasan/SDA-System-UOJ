@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import LoadingComponent from "../../../shared/loading/loading.component.jsx";
 
 import FooterComponent from "../../common/footer/footer.component";
 import HeaderComponent from "../../common/header/header.component";
-import MainComponent from "../main/main.component";
 
 import "./student.component.scss";
 
-const StudentComponent = () => {
+const StudentComponent = ({ CHILD }) => {
+  console.count("StudentComponent");
   const nav = useNavigate();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const StudentComponent = () => {
   return (
     <div className="Student">
       <HeaderComponent />
-      <MainComponent />
+      {CHILD}
       <FooterComponent />
     </div>
   );

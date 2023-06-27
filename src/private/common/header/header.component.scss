@@ -20,6 +20,7 @@
     height: max-content;
 
     &__logo {
+      margin-top: 0.5rem;
       @include media-query_all("margin-right", 5, 20, null, null, null, null);
       @include media-query_all("margin-left", 10, 20, null, null, null, null);
 
@@ -37,13 +38,12 @@
     }
 
     &__title {
-      // border: 1px solid #fff;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: center;
       margin: 0;
-      // border: 1px solid #fff;
+
       @include media-query_all(
         "width",
         "80%",
@@ -92,8 +92,6 @@
       }
 
       &__dropdown {
-        // border: 1px solid #fff;
-
         @include media-query_all("font-size", 16, 20, null, null, null, null);
 
         &__arrow {
@@ -109,7 +107,6 @@
         }
 
         &__content {
-          // display: flex;
           display: none;
           flex-direction: column;
           justify-content: center;

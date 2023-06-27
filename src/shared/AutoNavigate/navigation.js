@@ -10,7 +10,8 @@ const Navigate = (navigate) => {
 
     if (loggedUserRole === "student") {
       localStorage.setItem("username", "kajamohan Student");
-      navigate("/sda-uoj-system/student");
+      // navigate("/sda-uoj-system/student");
+      navigate("/student");
     }
 
     if (loggedUserRole === "admin") {

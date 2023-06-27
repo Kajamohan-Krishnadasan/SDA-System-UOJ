@@ -1,34 +1,46 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  // BrowserRouter,
+  // Navigate,
+  // Route,
+  RouterProvider,
+  // Routes,
+} from "react-router-dom";
 import "./App.scss";
+import { StudentRouter } from "./private/student/layout";
+import { StaffRouter } from "./private/academic-staff/layout";
 
-const PublicComponent = lazy(() =>
-  import("./public/public/public.component.jsx")
-);
+// const PublicComponent = lazy(() =>
+//   import("./public/public/public.component.jsx")
+// );
 
-const LoadingComponent = lazy(() =>
-  import("./shared/loading/loading.component.jsx")
-);
+// const LoadingComponent = lazy(() =>
+//   import("./shared/loading/loading.component.jsx")
+// );
 
-const StudentComponent = lazy(() =>
-  import("./private/student/student/student.component.jsx")
-);
+// const StudentComponent = lazy(() =>
+//   import("./private/student/student/student.component.jsx")
+// );
 
-const AcademicStaffComponent = lazy(() =>
-  import("./private/academic-staff/academic-staff/academic-staff.component.jsx")
-);
+// const AcademicStaffComponent = lazy(() =>
+//   import("./private/academic-staff/academic-staff/academic-staff.component.jsx")
+// );
 
-// non-academic staff act as admin
-const NonAcademicStaffComponent = lazy(() =>
-  import(
-    "./private/non-academic-staff/non-academic-staff/non-academic-staff.component.jsx"
-  )
-);
+// // non-academic staff act as admin
+// const NonAcademicStaffComponent = lazy(() =>
+//   import(
+//     "./private/non-academic-staff/non-academic-staff/non-academic-staff.component.jsx"
+//   )
+// );
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename="/">
+      <RouterProvider router={StudentRouter} />
+      <RouterProvider router={StaffRouter} />
+      {/* <RouterProvider router={AdminRouter} /> */}
+
+      {/* <BrowserRouter basename="/">
         <Routes>
           <Route path="/" element={<Navigate to="/sda-uoj-system" />} />
 
@@ -51,10 +63,7 @@ function App() {
                             element={<Navigate to="home" />}
                           />
                           <Route path="home" element={<StudentComponent />} />
-                          <Route
-                            path="loading"
-                            element={<LoadingComponent />}
-                          />
+
                           <Route
                             path="*"
                             element={<Navigate to="/sda-uoj-system" />}
@@ -78,10 +87,7 @@ function App() {
                             path="home"
                             element={<AcademicStaffComponent />}
                           />
-                          <Route
-                            path="loading"
-                            element={<LoadingComponent />}
-                          />
+
                           <Route
                             path="*"
                             element={<Navigate to="/sda-uoj-system" />}
@@ -105,10 +111,7 @@ function App() {
                             path="home"
                             element={<NonAcademicStaffComponent />}
                           />
-                          <Route
-                            path="loading"
-                            element={<LoadingComponent />}
-                          />
+
                           <Route
                             path="*"
                             element={<Navigate to="/sda-uoj-system" />}
@@ -126,7 +129,7 @@ function App() {
 
           <Route path="*" element={<Navigate to="/sda-uoj-system" />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
