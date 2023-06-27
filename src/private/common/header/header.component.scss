@@ -1,0 +1,177 @@
+@import "../../../assets/scss/index";
+
+.private {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: $header-background-color;
+
+  .header {
+    color: #fff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    padding: 20px 0 10px 0;
+    height: max-content;
+
+    &__logo {
+      margin-top: 0.5rem;
+      @include media-query_all("margin-right", 5, 20, null, null, null, null);
+      @include media-query_all("margin-left", 10, 20, null, null, null, null);
+
+      img {
+        border-radius: 50%;
+        @include media-query_all("width", 40, 100, null, null, null, null);
+        @include media-query_all("height", 40, 100, null, null, null, null);
+      }
+    }
+    .top {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100%;
+    }
+
+    &__title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 0;
+
+      @include media-query_all(
+        "width",
+        "80%",
+        "max-content",
+        null,
+        null,
+        null,
+        null
+      );
+      @include media-query_all("padding-left", 0, 32, null, null, null, null);
+      @include media-query_all("padding-right", 0, 32, null, null, null, null);
+
+      &__h1 {
+        margin: 0;
+        @include media-query_all("font-size", 14, 24, 30, 40, 44, null);
+      }
+    }
+
+    .user {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 1rem;
+      cursor: pointer;
+      width: 100%;
+
+      &__name {
+        margin: 0;
+        align-items: center;
+        @include media-query_all("font-size", 14, 24, null, null, null, null);
+        @include media-query_all("margin-left", 0, 16, null, null, null, null);
+        @include media-query_all("width", 140, 250, null, null, null, null);
+      }
+
+      &__avatar {
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        cursor: default;
+
+        &__img {
+          border-radius: 50%;
+          @include media-query_all("width", 30, 40, null, null, null, null);
+          @include media-query_all("height", 30, 40, null, null, null, null);
+        }
+      }
+
+      &__dropdown {
+        @include media-query_all("font-size", 16, 20, null, null, null, null);
+
+        &__arrow {
+          display: flex;
+
+          &__name {
+            margin-right: 0.3rem;
+          }
+
+          &__icon {
+            font-size: 1.2rem;
+          }
+        }
+
+        &__content {
+          display: none;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: $header-background-color;
+          color: #fff;
+          position: absolute;
+          top: 95%;
+          right: 0.5rem;
+          width: max-content;
+          z-index: 100;
+          padding: 0;
+          border-radius: 0 0 1rem 1rem;
+          animation: fadeIn 0.5s ease-in-out;
+
+          &.show {
+            display: flex;
+          }
+
+          &__setting {
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid #fff;
+
+            &:hover {
+              background-color: $mainscreen-dark-background-color;
+            }
+
+            &__icon {
+              margin-right: 0.8rem;
+            }
+          }
+
+          &__logout {
+            padding: 0.8rem 1rem;
+            border-radius: 0 0 1rem 1rem;
+            // height: 100%;
+            width: 100%;
+
+            &:hover {
+              background-color: $mainscreen-dark-background-color;
+            }
+
+            &__icon {
+              margin-right: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.show {
+  display: flex;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

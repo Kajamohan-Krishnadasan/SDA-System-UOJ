@@ -1,0 +1,9 @@
+@import "../../../assets/scss/index";
+
+.Student {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

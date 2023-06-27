@@ -1,0 +1,87 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin media-mobile {
+  @media screen and (min-width: 1px) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media screen and (min-width: 481px) {
+    @content;
+  }
+}
+
+@mixin media-medium {
+  @media screen and (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin media-laptop {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-desktop {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin media-widescreen {
+  @media screen and (min-width: 1900px) {
+    @content;
+  }
+}
+
+@mixin media-query_all(
+  $property,
+  $value1,
+  $value2,
+  $value3,
+  $value4,
+  $value5,
+  $value6
+) {
+  @if ($value1 != null) {
+    @include media-mobile {
+      #{$property}: #{set-value($value1)};
+    }
+  }
+
+  @if ($value2 != null) {
+    @include media-tablet {
+      #{$property}: #{set-value($value2)};
+    }
+  }
+
+  @if ($value3 != null) {
+    @include media-medium {
+      #{$property}: #{set-value($value3)};
+    }
+  }
+
+  @if ($value4 != null) {
+    @include media-laptop {
+      #{$property}: #{set-value($value4)};
+    }
+  }
+
+  @if ($value5 != null) {
+    @include media-desktop {
+      #{$property}: #{set-value($value6)};
+    }
+  }
+
+  @if ($value6 != null) {
+    @include media-widescreen {
+      #{$property}: #{set-value($value6)};
+    }
+  }
+}
